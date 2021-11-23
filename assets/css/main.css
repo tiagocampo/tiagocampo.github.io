@@ -2232,12 +2232,14 @@ input, select, textarea {
 
 		ul.alt {
 			list-style: none;
-			padding-left: 0;
+			padding-left: 0.5em;
 		}
 
 			ul.alt li {
-				border-top: solid 2px #f4f4f4;
+				border-top: 0;
 				padding: 0.5em 0;
+				/*border-top: solid 2px #f4f4f4;*/
+				/*padding: 0.5em 0;	*/
 			}
 
 				ul.alt li:first-child {
