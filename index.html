@@ -202,7 +202,7 @@
 												<!-- <img src="images/3707.png" alt="" width="256"/> -->
 												<img src="images/prac_genai.png" alt="" width="256"/>
 												<img src="images/3708.png" alt="" width="256"/>
-												<canvas id="pdf-thumbnail" width="288" height="384"></canvas>
+												<canvas id="pdf-thumbnail"></canvas>
 											</li>
 											
 										</ul>
@@ -427,29 +427,37 @@
 			<script src="assets/js/main.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 			<script>
-				// URL of the PDF
-				const pdfUrl = 'images/certificate_crewai.pdf';
+				const pdfUrl = 'path/to/your/pdf-file.pdf';
+				
+				// Define the desired dimensions for the thumbnail
+				const targetWidth = 256; // Desired width of the thumbnail
+				const targetHeight = 256; // Desired height of the thumbnail
 		
-				// Asynchronously load the PDF
 				pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
 					console.log('PDF loaded');
-		
-					// Get the first page
 					return pdf.getPage(1);
 				}).then(page => {
 					console.log('Page loaded');
 		
-					const viewport = page.getViewport({ scale: 0.2 });
+					// Define the original scale to fit the target size
+					let viewport = page.getViewport({ scale: 1 });
+					const scaleX = targetWidth / viewport.width;
+					const scaleY = targetHeight / viewport.height;
+					const scale = Math.min(scaleX, scaleY); // Ensures the entire page fits in the target dimensions
+					
+					// Recompute the viewport for the new scale
+					viewport = page.getViewport({ scale: scale });
+		
 					const canvas = document.getElementById('pdf-thumbnail');
 					const context = canvas.getContext('2d');
 					canvas.height = viewport.height;
 					canvas.width = viewport.width;
 		
-					// Render the page
 					const renderContext = {
 						canvasContext: context,
 						viewport: viewport
 					};
+		
 					page.render(renderContext).promise.then(() => {
 						console.log('Page rendered');
 					});
