@@ -209,6 +209,13 @@
 
 									<h3>Certificates</h3>
 
+									<article>
+										<a href="https://learn.deeplearning.ai/accomplishments/bc91085f-2d33-4d44-b182-b79ffcbe7ebd?usp=sharing"><h4>Multi AI Agent Systems with crewAI</h4></a>
+										<div class="inner">
+											<canvas id="pdf-thumbnail" width="150" height="200"></canvas>
+										</div>
+									</article>
+
 									<div class="features">
 										<article>
 											<a href="#" class="image""><img src="images/UC-24d13b3b-15ac-4fb7-bdd5-4afecb39f543.jpg" alt="" /></a>
@@ -274,12 +281,6 @@
 											</div>
 										</article>
 
-										<article>
-											<a href="https://learn.deeplearning.ai/accomplishments/bc91085f-2d33-4d44-b182-b79ffcbe7ebd?usp=sharing"><h4>Multi AI Agent Systems with crewAI</h4></a>
-											<div class="inner">
-										
-											</div>
-										</article>
 
 										<article>
 											<a href="https://learn.deeplearning.ai/accomplishments/ea03ecfe-8fa8-4b45-ac55-f5a121485dce?usp=sharing"><h4>Large Language Models with Semantic Search</h4></a>
@@ -423,6 +424,37 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+			<script>
+				// URL of the PDF
+				const pdfUrl = 'images/certificate_crewai.pdf';
+		
+				// Asynchronously load the PDF
+				pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+					console.log('PDF loaded');
+		
+					// Get the first page
+					return pdf.getPage(1);
+				}).then(page => {
+					console.log('Page loaded');
+		
+					const viewport = page.getViewport({ scale: 0.2 });
+					const canvas = document.getElementById('pdf-thumbnail');
+					const context = canvas.getContext('2d');
+					canvas.height = viewport.height;
+					canvas.width = viewport.width;
+		
+					// Render the page
+					const renderContext = {
+						canvasContext: context,
+						viewport: viewport
+					};
+					page.render(renderContext).promise.then(() => {
+						console.log('Page rendered');
+					});
+				}).catch(error => {
+					console.error('Error loading or rendering PDF', error);
+				});
+			</script>
 	</body>
 </html>
