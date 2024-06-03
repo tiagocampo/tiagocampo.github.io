@@ -209,7 +209,7 @@
 												<!-- <img src="images/3707.png" alt="" width="256"/> -->
 												<img src="images/prac_genai.png" alt="" width="256"/>
 												<img src="images/3708.png" alt="" width="256"/>
-												<canvas id="pdf-thumbnail"></canvas>
+												<canvas id="pdf-thumbnail-1"></canvas>
 											</li>
 											
 										</ul>
@@ -262,6 +262,16 @@
 													you straight from the oven!</p>
 											</div>
 										</article>
+
+
+										<article>
+											<a href="#" class="image"><canvas id="pdf-thumbnail-2"></canvas></a>
+											<div class="inner">
+												<h4>Introduction to Machine Learning with scikit-learn </h4>
+												<<p>Learn the fundamentals of Machine Learning in Python with this free 4-hour course!</p>
+											</div>
+										</article>
+
 										<article>
 											<a href="#" class="image"><img src="images/cm.jpg" alt="" /></a>
 											<div class="inner">
@@ -327,13 +337,6 @@
 											</div>
 										</article>
 
-										<article>
-											<a href="https://courses.dataschool.io/courses/introduction-to-machine-learning-with-scikit-learn" class="image" target="_blank" rel="noopener noreferrer"><img src="images/wimd_2.jpg" alt="" /></a>
-											<div class="inner">
-												<h4>Introduction to Machine Learning with scikit-learn </h4>
-												<p>Learn the fundamentals of Machine Learning in Python with this free 4-hour course!</p>
-											</div>
-										</article>
 									</div>
 								</div>
 							</section>
@@ -434,43 +437,50 @@
 			<script src="assets/js/main.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 			<script>
-				const pdfUrl = 'images/certificate_crewai.pdf';
+				const pdfUrl_1 = 'images/certificate_crewai.pdf';
+				const pdfUrl_2 = 'images/certificate_introML.pdf';
 				
-				// Define the desired dimensions for the thumbnail
+				// Define the desired dimensions for the thumbnails
 				const targetWidth = 256; // Desired width of the thumbnail
 				const targetHeight = 256; // Desired height of the thumbnail
 		
-				pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-					console.log('PDF loaded');
-					return pdf.getPage(1);
-				}).then(page => {
-					console.log('Page loaded');
+				function renderPdfToCanvas(pdfUrl, canvasId) {
+					pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+						console.log(`PDF loaded for canvas ${canvasId}`);
+						return pdf.getPage(1);
+					}).then(page => {
+						console.log(`Page loaded for canvas ${canvasId}`);
 		
-					// Define the original scale to fit the target size
-					let viewport = page.getViewport({ scale: 1 });
-					const scaleX = targetWidth / viewport.width;
-					const scaleY = targetHeight / viewport.height;
-					const scale = Math.min(scaleX, scaleY); // Ensures the entire page fits in the target dimensions
-					
-					// Recompute the viewport for the new scale
-					viewport = page.getViewport({ scale: scale });
+						// Define the original scale to fit the target size
+						let viewport = page.getViewport({ scale: 1 });
+						const scaleX = targetWidth / viewport.width;
+						const scaleY = targetHeight / viewport.height;
+						const scale = Math.min(scaleX, scaleY); // Ensures the entire page fits in the target dimensions
+						
+						// Recompute the viewport for the new scale
+						viewport = page.getViewport({ scale: scale });
 		
-					const canvas = document.getElementById('pdf-thumbnail');
-					const context = canvas.getContext('2d');
-					canvas.height = viewport.height;
-					canvas.width = viewport.width;
+						const canvas = document.getElementById(canvasId);
+						const context = canvas.getContext('2d');
+						canvas.height = viewport.height;
+						canvas.width = viewport.width;
 		
-					const renderContext = {
-						canvasContext: context,
-						viewport: viewport
-					};
+						const renderContext = {
+							canvasContext: context,
+							viewport: viewport
+						};
 		
-					page.render(renderContext).promise.then(() => {
-						console.log('Page rendered');
+						page.render(renderContext).promise.then(() => {
+							console.log(`Page rendered for canvas ${canvasId}`);
+						});
+					}).catch(error => {
+						console.error(`Error loading or rendering PDF for canvas ${canvasId}`, error);
 					});
-				}).catch(error => {
-					console.error('Error loading or rendering PDF', error);
-				});
+				}
+		
+				// Render the same PDF to both canvases
+				renderPdfToCanvas(pdfUrl_1, 'pdf-thumbnail-1'); // First canvas
+				renderPdfToCanvas(pdfUrl_2, 'pdf-thumbnail-2'); // Second canvas
 			</script>
 	</body>
 </html>
