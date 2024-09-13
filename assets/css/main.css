@@ -99,10 +99,15 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #888;
-		font-family: "Lato", sans-serif;
+		font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
-		line-height: 1.75em;
+		line-height: 1.6;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+		font-weight: 700;
 	}
 
 	a {
@@ -1709,7 +1714,7 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: calc(100% - 4.5em);
-		width: 45em;
+		width: 50em;
 	}
 
 		.container.xsmall {
@@ -2654,38 +2659,47 @@ input, select, textarea {
 
 /* Features */
 
-	.features article {
-		border-top: solid 3px #f4f4f4;
-		margin-bottom: 2.25em;
-		padding-top: 2.25em;
-	}
+.features article {
+    border-top: none;
+    margin-bottom: 2.25em;
+    padding: 2em;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-		.features article:first-child {
-			border-top: 0;
-			padding-top: 0;
-		}
+.features article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-		.features article .image {
-			display: inline-block;
-			padding-right: 2.5em;
-			vertical-align: middle;
-			width: 48%;
-		}
+.features article:first-child {
+    padding-top: 2em;
+}
 
-			.features article .image img {
-				display: block;
-				width: 100%;
-			}
+.features article .image {
+    display: inline-block;
+    padding-right: 2.5em;
+    vertical-align: middle;
+    width: 48%;
+}
 
-		.features article .inner {
-			display: inline-block;
-			vertical-align: middle;
-			width: 50%;
-		}
+.features article .image img {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+}
 
-			.features article .inner > :last-child {
-				margin-bottom: 0;
-			}
+.features article .inner {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+}
+
+.features article .inner > :last-child {
+    margin-bottom: 0;
+}
 
 /* Header */
 
@@ -2827,7 +2841,7 @@ input, select, textarea {
 /* Main */
 
 	#main > section {
-		border-top: solid 6px #f4f4f4;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
 		#main > section > .container {
