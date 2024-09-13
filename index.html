@@ -12,9 +12,11 @@
 				padding-bottom: 40px; /* Adjust bottom padding as needed */
 			}
 		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 	</head>
 	<body class="is-preload">
-
+		<button id="export-pdf" class="button icon solid fa-file-pdf">Export to PDF</button>
 		<!-- Header -->
 			<section id="header">
 				<header>
@@ -476,5 +478,25 @@
 				renderPdfToCanvas(pdfUrl_2, 'pdf-thumbnail-2'); // Second canvas
 				renderPdfToCanvas(pdfUrl_3, 'pdf-thumbnail-3');
 			</script>
+
+<script>
+	document.getElementById('export-pdf').addEventListener('click', function() {
+		// Element to export
+		const element = document.body;
+		
+		// Options for html2pdf
+		const opt = {
+			margin:       1,
+			filename:     'tiago_campos_cv.pdf',
+			image:        { type: 'jpeg', quality: 0.98 },
+			html2canvas:  { scale: 2 },
+			jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+		};
+
+		// Generate PDF
+		html2pdf().set(opt).from(element).save();
+	});
+</script>
+
 	</body>
 </html>
