@@ -1,4 +1,11 @@
+# OS files
+.DS_Store
+Thumbs.db
 
+# IDE
+.vscode/
+.idea/
 
-#Ignore cursor AI rules
-.cursor/rules/codacy.mdc
+# Claude Code
+.claude/
+docs/plans/
