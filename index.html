@@ -1,2109 +1,1466 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiago Campos - Cientista de Dados Sênior | Especialista em IA & ML</title>
-    <meta name="description" content="Cientista de Dados Sênior no Itaú-Unibanco especializado em IA/ML, LangChain, LangGraph e sistemas multi-agente. Ph.D. em Física Computacional com ampla experiência em serviços financeiros e tecnologias de IA de ponta.">
-    <meta name="keywords" content="Cientista de Dados, IA, Machine Learning, LangChain, LangGraph, Bedrock, IA Generativa, Sistemas Multi-Agente, Itaú-Unibanco, Física Computacional, Ph.D.">
-    <meta name="author" content="Tiago Campos">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Tiago Campos - Cientista de Dados Sênior | Especialista em IA & ML">
-    <meta property="og:description" content="Cientista de Dados Sênior especializado em IA/ML, LangChain, LangGraph e sistemas multi-agente no Itaú-Unibanco">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tiagocampo.github.io">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border-color: #e5e7eb;
-            --success-color: #10b981;
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            overflow-x: hidden;
-        }
-
-        /* Modern Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            padding: 1rem 0;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-link {
-            color: var(--text-dark) !important;
-            font-weight: 500;
-            margin: 0 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 80%;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a"><stop offset="0" stop-color="%23fff" stop-opacity=".1"/><stop offset="1" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"><animate attributeName="cx" from="200" to="800" dur="10s" repeatCount="indefinite"/><animate attributeName="cy" from="200" to="800" dur="10s" repeatCount="indefinite"/></circle><circle cx="800" cy="800" r="150" fill="url(%23a)"><animate attributeName="cx" from="800" to="200" dur="15s" repeatCount="indefinite"/><animate attributeName="cy" from="800" to="200" dur="15s" repeatCount="indefinite"/></circle></svg>') no-repeat center;
-            background-size: cover;
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 6px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 5rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            color: var(--text-dark);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        /* Executive Summary */
-        .executive-summary {
-            background: var(--bg-white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .summary-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-dark);
-            text-align: justify;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-category {
-            background: var(--bg-white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-item {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .skill-level {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--border-color);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 4px;
-            transition: width 1s ease;
-            position: relative;
-        }
-
-        .skill-progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            background: var(--bg-white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            width: 45%;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            border: 4px solid var(--bg-white);
-            box-shadow: 0 0 0 4px var(--border-color);
-        }
-
-        .timeline-date {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-company {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .timeline-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-achievements {
-            list-style: none;
-            padding: 0;
-        }
-
-        .timeline-achievements li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .timeline-achievements li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-size: 0.8rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg-white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1.5rem;
-            position: relative;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-subtitle {
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-
-        .project-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .project-tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-light);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: auto;
-        }
-
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Certifications Section */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .certification-card {
-            background: var(--bg-white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .certification-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-secondary);
-        }
-
-        .certification-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .certification-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            position: relative;
-        }
-
-        .certification-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .certification-issuer {
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-
-        .certification-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .certification-date {
-            color: var(--primary-color);
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .certification-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .certification-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
-
-        .cert-skill {
-            background: var(--bg-light);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Certification Categories */
-        .certifications-category {
-            margin-bottom: 3rem;
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        /* Different gradients for different certification types */
-        .certifications-category:nth-child(2) .certification-card::before {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .certifications-category:nth-child(3) .certification-card::before {
-            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .certifications-category:nth-child(4) .certification-card::before {
-            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .certifications-category:nth-child(2) .certification-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .certifications-category:nth-child(3) .certification-header {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .certifications-category:nth-child(4) .certification-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        /* Education Section */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .education-card {
-            background: var(--bg-white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .education-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .education-degree {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-institution {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .education-period {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .education-details {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Publications Section */
-        .publications-list {
-            margin-top: 3rem;
-        }
-
-        .publication-item {
-            background: var(--bg-white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .publication-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .publication-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .publication-authors {
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-            font-style: italic;
-        }
-
-        .publication-journal {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .publication-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s ease;
-        }
-
-        .publication-link:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 5rem 0;
-        }
-
-        .contact-section .section-title {
-            color: white;
-        }
-
-        .contact-section .section-title::after {
-            background: white;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .contact-text {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-link:hover {
-            opacity: 0.8;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 0;
-            opacity: 0.8;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .timeline::before {
-                left: 2rem;
-            }
-
-            .timeline-item {
-                flex-direction: row !important;
-                margin-left: 4rem;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-dot {
-                left: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Loading Animation */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Print Styles */
-        @media print {
-            .navbar, .back-to-top, .contact-section {
-                display: none;
-            }
-
-            .hero-section {
-                background: white;
-                color: black;
-                min-height: auto;
-                padding: 2rem 0;
-            }
-
-            .hero-title, .hero-subtitle, .hero-description {
-                color: black;
-            }
-
-            .section {
-                padding: 2rem 0;
-            }
-
-            .timeline::before {
-                left: 2rem;
-            }
-
-            .timeline-item {
-                flex-direction: row !important;
-                margin-left: 4rem;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago de Campos - Cientista de Dados Especialista | CV</title>
+<meta name="description" content="Cientista de Dados Especialista no Itaú-Unibanco especializado em IA/ML, LangChain, LangGraph e sistemas multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --itau-orange: #F37021;
+  --itau-orange-dark: #D4601A;
+  --itau-blue: #1A5493;
+  --itau-blue-dark: #0F3A6B;
+  --itau-gold: #FFF212;
+  --black: #0A0A0A;
+  --dark: #111111;
+  --dark-gray: #1A1A1A;
+  --mid-gray: #6B6B6B;
+  --light-gray: #E8E8E8;
+  --off-white: #F5F5F3;
+  --white: #FFFFFF;
+  --sans: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--off-white);
+  color: var(--black);
+  line-height: 1.5;
+}
+
+/* ===== PDF BUTTON ===== */
+.pdf-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--itau-orange);
+  color: var(--white);
+  border: none;
+  padding: 14px 28px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pdf-btn:hover {
+  background: var(--itau-orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(243,112,33,0.4);
+}
+.pdf-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ===== PAGE LAYOUT ===== */
+.page {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--white);
+  box-shadow: 0 0 60px rgba(0,0,0,0.08);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  background: var(--itau-blue);
+  color: var(--white);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--itau-orange);
+}
+
+.avatar-wrap {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 16px;
+  position: relative;
+  border: 3px solid var(--itau-orange);
+  flex-shrink: 0;
+}
+
+.avatar-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--itau-orange);
+}
+
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.5s ease;
+}
+
+.avatar-wrap:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+.sidebar-name {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 3px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.sidebar-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--itau-orange);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.sidebar-area {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.sidebar-tagline {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.45;
+  font-style: italic;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
+
+.sidebar-tagline::before {
+  content: '\201C';
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--itau-orange);
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-right: 2px;
+}
+
+/* Sidebar sections */
+.sidebar-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--itau-orange);
+  margin-bottom: 14px;
+}
+
+.contact-section { margin-bottom: 20px; }
+
+.contact-icon-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+}
+
+.contact-icon-link:hover { color: var(--itau-orange); }
+
+.contact-icon-wrap {
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-icon-wrap svg {
+  width: 12px;
+  height: 12px;
+}
+
+.contact-icon-text {
+  font-size: 0.82rem;
+  word-break: break-all;
+}
+
+/* Education in sidebar */
+.edu-section { margin-bottom: 20px; }
+
+.edu-item {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.edu-item:last-child { border-bottom: none; }
+
+.edu-degree {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1px;
+}
+
+.edu-school {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.edu-year {
+  font-size: 0.68rem;
+  color: var(--itau-orange);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Languages */
+.lang-section { margin-bottom: 20px; }
+
+.lang-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  padding: 3px 0;
+  color: rgba(255,255,255,0.85);
+}
+.lang-level { color: var(--itau-orange); font-weight: 600; font-size: 0.75rem; }
+
+/* Publications count */
+.pub-section {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.pub-count {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--itau-orange);
+  line-height: 1;
+}
+
+.pub-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+
+.pub-journals {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Highlights - positioned by JS to match main sections */
+.sidebar-spacer {
+  display: none;
+}
+
+.highlight-group {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  border-left: 3px solid var(--itau-orange);
+}
+
+.highlight-group.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.highlight-group.default-visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.highlight-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.highlight-number {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--itau-orange);
+  line-height: 1;
+  min-width: 28px;
+}
+
+.highlight-text {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+
+.highlight-group-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--itau-orange);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  padding: 48px 52px;
+  overflow: hidden;
+}
+
+/* Section dividers */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--black);
+  margin: 40px 0 28px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 40px;
+  height: 5px;
+  background: var(--itau-orange);
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-number {
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--light-gray);
+  line-height: 1;
+  user-select: none;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/* Summary */
+.summary-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--black);
+  max-width: 600px;
+  margin-bottom: 8px;
+}
+
+.summary-text strong {
+  font-weight: 700;
+  color: var(--itau-blue);
+}
+
+/* Experience */
+.exp-item {
+  margin-bottom: 32px;
+  padding-left: 24px;
+  border-left: 2px solid var(--light-gray);
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.exp-item:hover { border-left-color: var(--itau-orange); }
+
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--light-gray);
+  transition: background 0.3s ease;
+}
+
+.exp-item:first-child::before {
+  background: var(--itau-orange);
+  box-shadow: 0 0 0 4px rgba(243,112,33,0.2);
+}
+
+.exp-item:hover::before { background: var(--itau-orange); }
+
+.exp-role {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.exp-company {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--itau-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.exp-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mid-gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.exp-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: #333;
+}
+
+.exp-achievements {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.exp-achievements li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 5px;
+  font-size: 0.83rem;
+  color: #444;
+  line-height: 1.55;
+}
+
+.exp-achievements li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--itau-orange);
+  opacity: 0.7;
+}
+
+/* Skills - in main content, not sidebar */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.skill-category {
+  padding: 16px;
+  border: 1px solid var(--light-gray);
+  transition: border-color 0.3s, transform 0.2s;
+  position: relative;
+}
+
+.skill-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--itau-orange);
+  transition: width 0.4s ease;
+}
+
+.skill-category:hover::before { width: 100%; }
+.skill-category:hover { border-color: var(--itau-orange); transform: translateY(-2px); }
+
+.skill-cat-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--itau-blue);
+  margin-bottom: 10px;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.skill-pill {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: var(--off-white);
+  color: var(--black);
+  border: 1px solid var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+  background: var(--itau-orange);
+  color: var(--white);
+  border-color: var(--itau-orange);
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  padding: 20px;
+  border: 1px solid var(--light-gray);
+  transition: border-color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--itau-orange);
+  transition: width 0.4s ease;
+}
+
+.project-card:hover::before { width: 100%; }
+.project-card:hover { border-color: var(--itau-orange); transform: translateY(-2px); }
+
+.project-name {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.project-org {
+  font-size: 0.75rem;
+  color: var(--itau-orange);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.project-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--off-white);
+  border: 1px solid var(--light-gray);
+  color: var(--itau-blue);
+}
+
+/* Certifications */
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cert-item {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 5px 14px;
+  border: 1px solid var(--black);
+  color: var(--black);
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.cert-item:hover {
+  background: var(--itau-blue);
+  color: var(--white);
+  border-color: var(--itau-blue);
+}
+
+/* Publications */
+.pub-list { list-style: none; padding: 0; }
+
+.pub-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.pub-entry:last-child { border-bottom: none; }
+
+.pub-num {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--itau-orange);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 24px;
+}
+
+.pub-content { flex: 1; }
+
+.pub-title {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+.pub-authors {
+  font-size: 0.78rem;
+  color: var(--mid-gray);
+  font-style: italic;
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+.pub-journal-name {
+  font-size: 0.78rem;
+  color: var(--itau-blue);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.pub-link {
+  font-size: 0.75rem;
+  color: var(--itau-orange);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pub-link:hover { color: var(--itau-orange-dark); }
+
+/* Conferences */
+.conf-list {
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.7;
+  columns: 2;
+  column-gap: 24px;
+  padding-left: 18px;
+}
+
+.conf-list li { break-inside: avoid; margin-bottom: 4px; }
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: relative; }
+  .sidebar::after { width: 100%; height: 4px; bottom: 0; top: auto; }
+  .avatar-wrap { max-width: 200px; margin: 0 auto 24px; }
+  .main { padding: 36px 24px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .pdf-btn { top: 12px; right: 12px; padding: 10px 16px; font-size: 0.7rem; }
+  .section-number { font-size: 2.2rem; }
+  .section-title { font-size: 1.2rem; }
+}
+
+@media (max-width: 600px) {
+  .sidebar { padding: 32px 20px; }
+  .main { padding: 28px 16px; }
+  .sidebar-name { font-size: 1.5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .conf-list { columns: 1; }
+  .pdf-btn { position: fixed; bottom: 16px; right: 16px; top: auto; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  @page { size: A4; margin: 12mm 15mm; }
+
+  .pdf-btn { display: none !important; }
+
+  body { background: white; font-size: 9pt; }
+
+  .page {
+    display: block;
+    box-shadow: none;
+    max-width: none;
+  }
+
+  /* Flatten sidebar into header */
+  .sidebar {
+    position: static;
+    height: auto;
+    overflow: visible;
+    background: none;
+    color: var(--black);
+    padding: 0 0 16px;
+    border-bottom: 2px solid var(--black);
+    margin-bottom: 12px;
+  }
+  .sidebar::after { display: none; }
+
+  .sidebar .avatar-wrap {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0 16px 8px 0;
+    border-color: var(--black);
+  }
+  .sidebar .avatar-wrap::after { display: none; }
+
+  .sidebar-name {
+    text-align: left;
+    font-size: 1.4rem;
+    color: var(--black);
+  }
+  .sidebar-title {
+    color: var(--itau-blue);
+    text-align: left;
+  }
+  .sidebar-area { text-align: left; color: var(--mid-gray); }
+  .sidebar-tagline {
+    text-align: left;
+    color: var(--mid-gray);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 8px;
+  }
+  .sidebar-tagline::before { color: var(--itau-blue); font-size: 1.4rem; }
+
+  .sidebar-label { display: none; }
+
+  /* Contact: horizontal */
+  .contact-section { margin-bottom: 6px; }
+  .contact-section .sidebar-label { display: block; }
+  .contact-icon-link { display: inline-flex; padding: 0 12px 0 0; color: var(--black); }
+  .contact-icon-wrap { background: none; }
+  .contact-icon-wrap svg { stroke: var(--black); fill: var(--black); width: 10px; height: 10px; }
+  .contact-icon-text { font-size: 0.75rem; }
+
+  /* Education: horizontal compact */
+  .edu-section { margin-bottom: 6px; }
+  .edu-section .sidebar-label { display: block; }
+  .edu-item {
+    display: inline;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-right: 16px;
+    font-size: 0.75rem;
+  }
+  .edu-degree { display: inline; font-size: 0.75rem; }
+  .edu-school { display: inline; }
+  .edu-year { display: inline; }
+
+  /* Languages: horizontal */
+  .lang-section { margin-bottom: 4px; }
+  .lang-section .sidebar-label { display: block; }
+  .lang-item { display: inline; padding: 0 12px 0 0; font-size: 0.75rem; }
+  .lang-level { font-size: 0.75rem; }
+
+  /* Highlights: hide in print */
+  .highlights-anchor { display: none; }
+
+  /* Main content */
+  .main { padding: 0; }
+
+  .section-divider { margin: 16px 0 12px; }
+  .section-number { font-size: 2rem; }
+  .section-title { font-size: 1.1rem; }
+  .section-header { margin-bottom: 12px; }
+
+  .fade-in { opacity: 1 !important; transform: none !important; }
+
+  /* Page breaks */
+  .exp-item, .project-card, .pub-entry { break-inside: avoid; }
+
+  /* Grid adjustments */
+  .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .skill-category { padding: 8px; }
+  .project-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .conf-list { columns: 2; }
+
+  /* Print colors */
+  .skill-pill, .project-tag, .cert-item,
+  .section-divider::before, .exp-item::before,
+  .exp-item:first-child::before, .project-card::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .exp-item { border-left-color: var(--mid-gray); }
+  .exp-item:first-child::before { background: var(--black); box-shadow: none; }
+  .exp-item::before { background: var(--mid-gray); }
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">Tiago Campos</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Competências</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Experiência</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projetos</a>
-                    </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#education">Educação</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#publications">Publicações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-bg-animation"></div>
-        <div class="container">
-            <div class="hero-content text-center">
-                <img src="images/avatar.jpg" alt="Tiago Campos" class="profile-img mb-4" data-aos="zoom-in">
-                <h1 class="hero-title" data-aos="fade-up">Tiago de Campos</h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
-                    Cientista de Dados Sênior | Especialista em IA & Machine Learning
-                </p>
-                <p class="hero-description mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    Fazendo a ponte entre a física computacional e as tecnologias de IA de ponta.
-                    Especializado em IA generativa, sistemas multi-agente e soluções avançadas de machine learning
-                    em uma das principais instituições financeiras do Brasil.
-                </p>
-                <div class="social-links" data-aos="fade-up" data-aos-delay="300">
-                    <a href="mailto:tiagocampo@gmail.com" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/tiago-de-campos-a77827a5/" class="social-link" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/tiagocampo" class="social-link" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://twitter.com/deCamposTiago" class="social-link" target="_blank" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://tiagocampo.github.io/blog" class="social-link" target="_blank" title="Blog">
-                        <i class="fas fa-book"></i>
-                    </a>
-                </div>
-            </div>
+<!-- PDF Download -->
+<button class="pdf-btn" onclick="window.print()">
+  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Print / Save PDF
+</button>
+
+<div class="page" id="cv-content">
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+
+    <div class="avatar-wrap fade-in">
+      <img src="images/avatar.jpg" alt="Tiago de Campos">
+    </div>
+
+    <h1 class="sidebar-name fade-in">Tiago de<br>Campos</h1>
+    <p class="sidebar-title fade-in">Cientista de Dados Especialista</p>
+    <p class="sidebar-area fade-in">Especialista em IA &amp; Machine Learning</p>
+    <p class="sidebar-tagline fade-in">Fazendo a ponte entre a f&iacute;sica computacional e as tecnologias de IA de ponta</p>
+
+    <!-- Contact -->
+    <div class="contact-section fade-in">
+      <div class="sidebar-label">Contato</div>
+      <a class="contact-icon-link" href="mailto:tiagocampo@gmail.com" title="Email">
+        <span class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        </span>
+        <span class="contact-icon-text">tiagocampo@gmail.com</span>
+      </a>
+      <a class="contact-icon-link" href="https://linkedin.com/in/tiago-de-campos-a77827a5" target="_blank" title="LinkedIn">
+        <span class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </span>
+        <span class="contact-icon-text">LinkedIn</span>
+      </a>
+      <a class="contact-icon-link" href="https://github.com/tiagocampo" target="_blank" title="GitHub">
+        <span class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        </span>
+        <span class="contact-icon-text">GitHub</span>
+      </a>
+    </div>
+
+    <!-- Education -->
+    <div class="edu-section fade-in">
+      <div class="sidebar-label">Forma&ccedil;&atilde;o Acad&ecirc;mica</div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Ph.D. F&iacute;sica Computacional</div>
+        <div class="edu-school">USP S&atilde;o Carlos</div>
+        <div class="edu-year">2013 &mdash; 2017</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">M.Sc. F&iacute;sica Computacional</div>
+        <div class="edu-school">USP S&atilde;o Carlos</div>
+        <div class="edu-year">2011 &mdash; 2013</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">B.Sc. F&iacute;sica</div>
+        <div class="edu-school">USP S&atilde;o Carlos</div>
+        <div class="edu-year">2006 &mdash; 2011</div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="lang-section fade-in">
+      <div class="sidebar-label">Idiomas</div>
+      <div class="lang-item"><span>Portugu&ecirc;s</span><span class="lang-level">Nativo</span></div>
+      <div class="lang-item"><span>English</span><span class="lang-level">Fluente</span></div>
+    </div>
+
+    <!-- Highlights - scroll-synced, only active one visible -->
+    <div class="highlights-anchor" style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+
+      <div class="highlight-group default-visible" data-highlight="hl-default">
+        <div class="highlight-group-label">Destaques</div>
+        <div class="highlight-item">
+          <span class="highlight-number">7</span>
+          <span class="highlight-text">Publica&ccedil;&otilde;es em peri&oacute;dicos de alto impacto</span>
         </div>
+        <div class="highlight-item">
+          <span class="highlight-number">9+</span>
+          <span class="highlight-text">Confer&ecirc;ncias internacionais</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-number">4</span>
+          <span class="highlight-text">Institui&ccedil;&otilde;es internacionais de pesquisa</span>
+        </div>
+      </div>
+
+      <div class="highlight-group" data-highlight="hl-03">
+        <div class="highlight-group-label">&sect;03 &middot; Compet&ecirc;ncias</div>
+        <div class="highlight-item">
+          <span class="highlight-number">6</span>
+          <span class="highlight-text">Categorias de compet&ecirc;ncias t&eacute;cnicas</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-number">30+</span>
+          <span class="highlight-text">Tecnologias e ferramentas</span>
+        </div>
+      </div>
+
+      <div class="highlight-group" data-highlight="hl-04">
+        <div class="highlight-group-label">&sect;04 &middot; Projetos</div>
+        <div class="highlight-item">
+          <span class="highlight-number">4</span>
+          <span class="highlight-text">Projetos principais em destaque</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-number">3</span>
+          <span class="highlight-text">Projetos em produ&ccedil;&atilde;o no Ita&uacute;</span>
+        </div>
+      </div>
+
+      <div class="highlight-group" data-highlight="hl-05">
+        <div class="highlight-group-label">&sect;05 &middot; Publica&ccedil;&otilde;es</div>
+        <div class="highlight-item">
+          <span class="highlight-number">7</span>
+          <span class="highlight-text">Artigos em peri&oacute;dicos de alto impacto</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-number">2</span>
+          <span class="highlight-text">Trabalhos como primeiro autor</span>
+        </div>
+      </div>
+
+      <div class="highlight-group" data-highlight="hl-06">
+        <div class="highlight-group-label">&sect;06 &middot; Confer&ecirc;ncias</div>
+        <div class="highlight-item">
+          <span class="highlight-number">9+</span>
+          <span class="highlight-text">Confer&ecirc;ncias internacionais</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-number">4</span>
+          <span class="highlight-text">Institui&ccedil;&otilde;es internacionais de pesquisa</span>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="main">
+
+    <!-- Summary -->
+    <section class="fade-in">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Perfil</h2>
+      </div>
+      <p class="summary-text">
+        Cientista de Dados <strong>Especialista</strong> no <strong>Ita&uacute;-Unibanco</strong> (DAA &mdash; Diretoria de Applied Analytics, Comunidade de Mercado de Capitais e M&amp;A). Com s&oacute;lida forma&ccedil;&atilde;o em <strong>F&iacute;sica Computacional</strong> pela <strong>USP S&atilde;o Carlos</strong> &mdash; incluindo Ph.D., M.Sc. e B.Sc. &mdash; e experi&ecirc;ncia internacional em pesquisa (SUNY Buffalo &mdash; EUA, Universit&auml;t Regensburg &mdash; Alemanha), aplico conhecimento avan&ccedil;ado para impulsionar a inova&ccedil;&atilde;o em servi&ccedil;os financeiros atrav&eacute;s de tecnologias de IA e Machine Learning.
+      </p>
+      <p class="summary-text">
+        Especialista em <strong>Machine Learning</strong> tradicional e avan&ccedil;ado &mdash; desde modelos de propens&atilde;o com Scikit-learn e XGBoost at&eacute; arquiteturas de <strong>IA generativa</strong> com LangChain, <strong>LangGraph</strong>, <strong>AWS Bedrock</strong> e sistemas multi-agente. Experi&ecirc;ncia end-to-end em pipelines de ML: engenharia de features, treinamento, deploy e monitoramento em produ&ccedil;&atilde;o. Mais de <strong>7 publica&ccedil;&otilde;es em peri&oacute;dicos de alto impacto</strong> e 9+ confer&ecirc;ncias internacionais, com background em computa&ccedil;&atilde;o de alto desempenho e f&iacute;sica te&oacute;rica.
+      </p>
     </section>
 
-    <!-- Executive Summary -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Resumo Executivo</h2>
-            <div class="executive-summary" data-aos="fade-up" data-aos-delay="100">
-                <p class="summary-text">
-                    Cientista de Dados Sênior no Itaú-Unibanco com sólida formação em Física Computacional pela USP São Carlos.
-                    Com vasta experiência em computação de alto desempenho e física teórica, aplico conhecimento avançado
-                    para impulsionar a inovação em serviços financeiros através de tecnologias de IA e Machine Learning.
-                    Minha especialidade inclui arquitetura de soluções escaláveis com LangChain, LangGraph, AWS Bedrock e
-                    sistemas multi-agente, traduzindo conceitos teóricos complexos em aplicações práticas de negócios.
-                    Possuo histórico comprovado de contribuições significativas tanto para pesquisa acadêmica quanto
-                    para avanços industriais, com múltiplas publicações em periódicos científicos de alto impacto.
-                    Comprometido em expandir os limites das aplicações de IA em serviços financeiros, mantendo rigorosos
-                    padrões científicos e práticas éticas de desenvolvimento.
-                </p>
-            </div>
-        </div>
+    <div class="section-divider"></div>
+
+    <!-- Experience -->
+    <section class="fade-in">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Experi&ecirc;ncia</h2>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-role">Cientista de Dados Especialista</div>
+        <div class="exp-company">Ita&uacute;-Unibanco &mdash; DAA, Comunidade de Mercado de Capitais e M&amp;A</div>
+        <div class="exp-date">Abr 2022 &mdash; Presente</div>
+        <p class="exp-desc">
+          Liderando o desenvolvimento de solu&ccedil;&otilde;es de IA e ML de ponta para uma das maiores institui&ccedil;&otilde;es financeiras do Brasil.
+        </p>
+        <ul class="exp-achievements">
+          <li>Implementando solu&ccedil;&otilde;es de IA generativa com AWS Bedrock para efici&ecirc;ncia operacional</li>
+          <li>Desenvolvendo modelos ML avan&ccedil;ados para propens&atilde;o e experi&ecirc;ncias personalizadas de clientes</li>
+          <li>Arquitetando sistemas multi-agente escal&aacute;veis usando LangChain e LangGraph para workflows financeiros complexos de M&amp;A</li>
+          <li>Projeto pioneiro de automa&ccedil;&atilde;o de extra&ccedil;&atilde;o de entidades para automa&ccedil;&atilde;o de processos utilizando t&eacute;cnicas OCR e LLM</li>
+          <li>Mentorando cientistas de dados j&uacute;nior e s&ecirc;nior, estabelecendo melhores pr&aacute;ticas para deploy de modelos ML</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-role">Pesquisador P&oacute;s-Doutoral</div>
+        <div class="exp-company">SUNY Buffalo &mdash; New York, EUA</div>
+        <div class="exp-date">2018 &mdash; 2019</div>
+        <p class="exp-desc">
+          Pesquisa avan&ccedil;ada em f&iacute;sica computacional e sistemas de semicondutores sob supervis&atilde;o do Prof. Igor Zutic.
+        </p>
+        <ul class="exp-achievements">
+          <li>Simula&ccedil;&otilde;es de alto desempenho de sistemas qu&acirc;nticos de semicondutores usando Fortran</li>
+          <li>Metodos computacionais novadores para calculos de estrutura eletr&ocirc;nica</li>
+          <li>Publica&ccedil;&otilde;es em peri&oacute;dicos de f&iacute;sica de alto impacto</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-role">Pesquisador P&oacute;s-Doutoral</div>
+        <div class="exp-company">Universit&auml;t Regensburg &mdash; Alemanha</div>
+        <div class="exp-date">2017 &mdash; 2018</div>
+        <p class="exp-desc">
+          Pesquisa em espintr&ocirc;nica e f&iacute;sica de semicondutores sob o Prof. Jaroslav Fabian.
+        </p>
+        <ul class="exp-achievements">
+          <li>Efeitos de acoplamento spin-&oacute;rbita em nanofios de semicondutores</li>
+          <li>Propriedades topol&oacute;gicas em estruturas de semicondutores</li>
+          <li>Ferramentas computacionais para propriedades eletr&ocirc;nicas de sistemas nanosc&oacute;picos</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-role">Pesquisador de Ph.D.</div>
+        <div class="exp-company">USP S&atilde;o Carlos &mdash; Instituto de F&iacute;sica</div>
+        <div class="exp-date">2013 &mdash; 2017</div>
+        <p class="exp-desc">
+          Pesquisa doutoral em f&iacute;sica computacional focada em nanofios de semicondutores e espintr&ocirc;nica. Incluiu Ph.D. sandu&iacute;che na Universit&auml;t Regensburg.
+        </p>
+        <ul class="exp-achievements">
+          <li>7+ artigos em peri&oacute;dicos de f&iacute;sica de alto impacto</li>
+          <li>Colabora&ccedil;&otilde;es internacionais com grupos na Alemanha e EUA</li>
+          <li>Apresenta&ccedil;&otilde;es em 9+ confer&ecirc;ncias internacionais</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Expertise Técnica</h2>
-            <div class="skills-grid">
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-brain"></i> IA & Machine Learning</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>IA Generativa</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Sistemas Multi-Agente</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%" data-width="92"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>ML Tradicional</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 94%" data-width="94"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Prompt Engineering</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Processamento de Linguagem Natural</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 87%" data-width="87"></div>
-                        </div>
-                    </div>
-                </div>	
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>AWS Bedrock</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Docker</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Pipelines CI/CD</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 82%" data-width="82"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Monitoramento & Logging</span>
-                            <span class="skill-level">Intermediário</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 78%" data-width="78"></div>
-                        </div>
-                    </div>
-                </div>
+    <div class="section-divider"></div>
 
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <h3><i class="fas fa-code"></i> Linguagens de Programação</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Fortran</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>SQL</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Bash/Shell Script</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 82%" data-width="82"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>JavaScript</span>
-                            <span class="skill-level">Intermediário</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Skills -->
+    <section class="fade-in" id="section-03">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Compet&ecirc;ncias T&eacute;cnicas</h2>
+      </div>
 
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
-                    <h3><i class="fas fa-database"></i> Ferramentas & Frameworks de Dados</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>LangChain</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>LangGraph</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Scikit-learn</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>LlamaIndex</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Pandas & NumPy</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 94%" data-width="94"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Vector Databases</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>AutoGen & crewAI</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%" data-width="85"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
-                    <h3><i class="fas fa-eye"></i> Computer Vision & OCR</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>OCR (Reconhecimento de Texto)</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Extração de Entidades</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 82%" data-width="82"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Processamento de Imagens</span>
-                            <span class="skill-level">Intermediário</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="600">
-                    <h3><i class="fas fa-industry"></i> Expertise de Domínio</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Serviços Financeiros</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Física Computacional</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Física de Semicondutores</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%" data-width="92"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>RAG & Retrieval Systems</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Análise de Propensão</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 87%" data-width="87"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Computação de Alto Desempenho</span>
-                            <span class="skill-level">Avançado</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%" data-width="85"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="skills-grid">
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">IA &amp; Machine Learning</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Generative AI</span>
+            <span class="skill-pill">Multi-Agent Systems</span>
+            <span class="skill-pill">Traditional ML</span>
+            <span class="skill-pill">Prompt Engineering</span>
+            <span class="skill-pill">NLP</span>
+            <span class="skill-pill">RAG Systems</span>
+          </div>
         </div>
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">Cloud &amp; DevOps</div>
+          <div class="skill-pills">
+            <span class="skill-pill">AWS Bedrock</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">CI/CD Pipelines</span>
+            <span class="skill-pill">Monitoring</span>
+          </div>
+        </div>
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">Linguagens</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Fortran</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Bash</span>
+            <span class="skill-pill">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">Frameworks</div>
+          <div class="skill-pills">
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">LangGraph</span>
+            <span class="skill-pill">Scikit-learn</span>
+            <span class="skill-pill">LlamaIndex</span>
+            <span class="skill-pill">Pandas/NumPy</span>
+            <span class="skill-pill">Vector DBs</span>
+            <span class="skill-pill">AutoGen/crewAI</span>
+          </div>
+        </div>
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">Vis&atilde;o Computacional</div>
+          <div class="skill-pills">
+            <span class="skill-pill">OCR</span>
+            <span class="skill-pill">Entity Extraction</span>
+            <span class="skill-pill">Image Processing</span>
+          </div>
+        </div>
+        <div class="skill-category fade-in">
+          <div class="skill-cat-name">Dom&iacute;nio</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Financial Services</span>
+            <span class="skill-pill">Computational Physics</span>
+            <span class="skill-pill">Semiconductor Physics</span>
+            <span class="skill-pill">Propensity Analysis</span>
+            <span class="skill-pill">HPC</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Experiência Profissional</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Abr 2022 - Presente</div>
-                        <h3 class="timeline-title">Cientista de Dados Sênior III</h3>
-                        <p class="timeline-company">Itaú-Unibanco</p>
-                        <p class="timeline-description">
-                            Liderando o desenvolvimento de soluções de IA e machine learning de ponta para uma das maiores instituições financeiras do Brasil.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Arquitetando sistemas multi-agente escaláveis usando LangChain e LangGraph para workflows financeiros complexos</li>
-                            <li>Implementando soluções de IA generativa com AWS Bedrock para melhorar a eficiência operacional</li>
-                            <li>Desenvolvendo modelos ML avançados para propensão e experiências personalizadas de clientes</li>
-                            <li>Impulsionando inovação através de aplicações inovadoras de IA em serviços financeiros</li>
-                            <li>Mentorando cientistas de dados juniores e estabelecendo melhores práticas para deploy e monitoramento de modelos ML</li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="section-divider"></div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2018 - 2019</div>
-                        <h3 class="timeline-title">Pesquisador Pós-Doutoral</h3>
-                        <p class="timeline-company">State University of New York - Buffalo</p>
-                        <p class="timeline-description">
-                            Conduzindo pesquisa avançada em física computacional e sistemas de semicondutores sob a supervisão do Prof. Igor Zutic.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Realizando simulações de alto desempenho de sistemas quânticos de semicondutores usando Fortran</li>
-                            <li>Desenvolvendo métodos computacionais novadores para cálculos de estrutura eletrônica</li>
-                            <li>Colaborando em projetos de pesquisa resultando em publicações em periódicos de física de alto impacto</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Projects -->
+    <section class="fade-in" id="section-04">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Projetos</h2>
+      </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2017 - 2018</div>
-                        <h3 class="timeline-title">Pesquisador Pós-Doutoral</h3>
-                        <p class="timeline-company">Universität Regensburg, Alemanha</p>
-                        <p class="timeline-description">
-                            Pesquisa em spintrônica e física de semicondutores sob o Prof. Jaroslav Fabian.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Investigando efeitos de acoplamento spin-órbita em nanofios de semicondutores</li>
-                            <li>Desenvolvendo ferramentas computacionais para analisar propriedades eletrônicas de sistemas nanoscópicos</li>
-                            <li>Contribuindo para o entendimento teórico de propriedades topológicas em estruturas de semicondutores</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2013 - 2017</div>
-                        <h3 class="timeline-title">Pesquisador de Ph.D.</h3>
-                        <p class="timeline-company">Instituto de Física de São Carlos, USP</p>
-                        <p class="timeline-description">
-                            Pesquisa doutoral em física computacional focada em nanofios de semicondutores e spintrônica.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Desenvolvendo métodos computacionais novadores para analisar propriedades eletrônicas de nanofios de semicondutores</li>
-                            <li>Publicado 7+ artigos em periódicos de física de alto impacto</li>
-                            <li>Colaborando com grupos de pesquisa internacionais na Alemanha e Estados Unidos</li>
-                            <li>Apresentando descobertas de pesquisa em grandes conferências internacionais</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <div class="project-grid">
+        <div class="project-card fade-in">
+          <div class="project-name">Sistema Multi-Agente de An&aacute;lise Financeira</div>
+          <div class="project-org">Ita&uacute;-Unibanco</div>
+          <p class="project-desc">Sistema multi-agente sofisticado usando LangChain e LangGraph para automatizar workflows complexos de an&aacute;lise financeira de M&amp;A.</p>
+          <div class="project-tech">
+            <span class="project-tag">LangChain</span>
+            <span class="project-tag">LangGraph</span>
+            <span class="project-tag">AWS Bedrock</span>
+            <span class="project-tag">Python</span>
+          </div>
         </div>
+        <div class="project-card fade-in">
+          <div class="project-name">Extra&ccedil;&atilde;o de Entidades com OCR e LLM</div>
+          <div class="project-org">Ita&uacute;-Unibanco</div>
+          <p class="project-desc">Sistema automatizado combinando OCR com LLMs para extra&ccedil;&atilde;o de entidades de documentos financeiros.</p>
+          <div class="project-tech">
+            <span class="project-tag">OCR</span>
+            <span class="project-tag">LLM</span>
+            <span class="project-tag">NLP</span>
+            <span class="project-tag">Computer Vision</span>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <div class="project-name">Modelos ML para Propens&atilde;o</div>
+          <div class="project-org">Ita&uacute;-Unibanco</div>
+          <p class="project-desc">Modelos utilizando t&eacute;cnicas avan&ccedil;adas de ML para an&aacute;lise de propens&atilde;o de clientes e experi&ecirc;ncias personalizadas.</p>
+          <div class="project-tech">
+            <span class="project-tag">Machine Learning</span>
+            <span class="project-tag">Scikit-learn</span>
+            <span class="project-tag">Python</span>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <div class="project-name">M&eacute;todo de Diferen&ccedil;as Finitas k&middot;p de 8-Bandas</div>
+          <div class="project-org">Pesquisa Acad&ecirc;mica</div>
+          <p class="project-desc">Ferramenta computacional de alto desempenho para simular po&ccedil;os qu&acirc;nticos de semicondutores usando o m&eacute;todo k&middot;p de 8-bandas.</p>
+          <div class="project-tech">
+            <span class="project-tag">Fortran</span>
+            <span class="project-tag">HPC</span>
+            <span class="project-tag">Computational Physics</span>
+            <span class="project-tag"><a href="https://github.com/tiagocampo/8bandkp-fdm" style="color:inherit">GitHub &rarr;</a></span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Certificações & Cursos</h2>
+    <div class="section-divider"></div>
 
-            <!-- Online Courses -->
-            <div class="certifications-category mb-5">
-                <h3 class="category-title" data-aos="fade-up">Cursos Online</h3>
-                <div class="certifications-grid">
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Introduction to LangGraph</h3>
-                            <p class="certification-issuer">LangChain</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Fundamentos do LangGraph - framework para construir aplicações agentic e multi-agente com melhor precisão e controle em workflows.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">LangGraph</span>
-                                <span class="cert-skill">Multi-Agent</span>
-                                <span class="cert-skill">AI Workflows</span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Publications - FULL LIST -->
+    <section class="fade-in" id="section-05">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Publica&ccedil;&otilde;es</h2>
+      </div>
 
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="certification-header">
-                            <h3 class="certification-title">LlamaIndex: Train ChatGPT on Custom Data</h3>
-                            <p class="certification-issuer">Udemy</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Treinar ChatGPT em dados customizados e construir engines de query e chat, além de agentes de dados com IA.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">LlamaIndex</span>
-                                <span class="cert-skill">RAG</span>
-                                <span class="cert-skill">Custom Data</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Feature Selection for Machine Learning</h3>
-                            <p class="certification-issuer">Udemy</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2023
-                            </div>
-                            <p class="certification-description">
-                                Curso mais abrangente de feature selection disponível online para construir modelos mais simples, rápidos e interpretáveis.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Feature Engineering</span>
-                                <span class="cert-skill">Model Optimization</span>
-                                <span class="cert-skill">ML Pipeline</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Feature Engineering for Machine Learning</h3>
-                            <p class="certification-issuer">Udemy</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2023
-                            </div>
-                            <p class="certification-description">
-                                Curso completo em feature engineering cobrindo imputação, encoding, transformação e criação de novas features.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Data Preprocessing</span>
-                                <span class="cert-skill">Feature Creation</span>
-                                <span class="cert-skill">Variable Encoding</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DeepLearning.AI Training -->
-            <div class="certifications-category">
-                <h3 class="category-title" data-aos="fade-up">Treinamentos DeepLearning.AI</h3>
-                <div class="certifications-grid">
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Multi AI Agent Systems with crewAI</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Construção de sistemas multi-agente usando crewAI para automação de tarefas complexas com múltiplos agentes de IA.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">crewAI</span>
-                                <span class="cert-skill">Multi-Agent Systems</span>
-                                <span class="cert-skill">AI Automation</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="certification-header">
-                            <h3 class="certification-title">AI Agentic Design Patterns with AutoGen</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Design patterns para sistemas agentes de IA usando AutoGen, incluindo conversação, colaboração e automação.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">AutoGen</span>
-                                <span class="cert-skill">Agentic Design</span>
-                                <span class="cert-skill">AI Collaboration</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Large Language Models with Semantic Search</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Implementação de busca semântica com Large Language Models para recuperação de informação contextual e relevante.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Semantic Search</span>
-                                <span class="cert-skill">LLMs</span>
-                                <span class="cert-skill">Information Retrieval</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Building and Evaluating Advanced RAG</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Construção e avaliação de sistemas RAG (Retrieval-Augmented Generation) avançados para aplicações de IA.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">RAG</span>
-                                <span class="cert-skill">Vector Databases</span>
-                                <span class="cert-skill">LLM Integration</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="500">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Preprocessing Unstructured Data for LLM Applications</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2024
-                            </div>
-                            <p class="certification-description">
-                                Técnicas avançadas para pré-processamento de dados não estruturados especificamente para aplicações com Large Language Models.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Data Preprocessing</span>
-                                <span class="cert-skill">Unstructured Data</span>
-                                <span class="cert-skill">LLM Applications</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Courses -->
-            <div class="certifications-category mt-5">
-                <h3 class="category-title" data-aos="fade-up">Cursos Adicionais</h3>
-                <div class="certifications-grid">
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Exploratory Data Analysis | Build EDA App</h3>
-                            <p class="certification-issuer">Streamlit</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2023
-                            </div>
-                            <p class="certification-description">
-                                Técnicas de análise exploratória de dados e construção de aplicações EDA interativas com Streamlit.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">EDA</span>
-                                <span class="cert-skill">Streamlit</span>
-                                <span class="cert-skill">Data Visualization</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Introduction to Machine Learning with scikit-learn</h3>
-                            <p class="certification-issuer">scikit-learn</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2023
-                            </div>
-                            <p class="certification-description">
-                                Fundamentos de Machine Learning em Python com scikit-learn em curso intensivo de 4 horas.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">scikit-learn</span>
-                                <span class="cert-skill">Python</span>
-                                <span class="cert-skill">ML Fundamentals</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="certification-header">
-                            <h3 class="certification-title">ChatGPT Prompt Engineering for Developers</h3>
-                            <p class="certification-issuer">DeepLearning.AI</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2023
-                            </div>
-                            <p class="certification-description">
-                                Curso de prompt engineering para desenvolvedores focado em otimizar interações com modelos de linguagem como ChatGPT.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Prompt Engineering</span>
-                                <span class="cert-skill">ChatGPT</span>
-                                <span class="cert-skill">LLM Optimization</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="certification-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="certification-header">
-                            <h3 class="certification-title">Coding the Matrix: Linear Algebra</h3>
-                            <p class="certification-issuer">Coursera</p>
-                        </div>
-                        <div class="certification-body">
-                            <div class="certification-date">
-                                <i class="fas fa-calendar"></i> 2022
-                            </div>
-                            <p class="certification-description">
-                                Álgebra linear através de aplicações em ciência da computação com implementação prática de algoritmos.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="cert-skill">Linear Algebra</span>
-                                <span class="cert-skill">Matrix Operations</span>
-                                <span class="cert-skill">Computational Math</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <ol class="pub-list">
+        <li class="pub-entry fade-in">
+          <span class="pub-num">1</span>
+          <div class="pub-content">
+            <div class="pub-title">Superconducting Proximity Effect in InAsSb Surface Quantum Wells with In Situ Al Contacts</div>
+            <div class="pub-authors">Mayer, W.; Schiela, W. F.; Yuan, J.; Hatefipour, M.; <strong>Campos, T.</strong>; et al.</div>
+            <div class="pub-journal-name">ACS Applied Electronic Materials, vol. 2, pp. 2351-2356, 2020</div>
+            <a href="https://arxiv.org/abs/1909.12571" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">2</span>
+          <div class="pub-content">
+            <div class="pub-title">Ultralong Spin Lifetimes in One-Dimensional Semiconductor Nanowires</div>
+            <div class="pub-authors">Dirnberger, F.; Kammermeier, M.; K&ouml;nig, J.; <strong>Campos, T.</strong>; et al.</div>
+            <div class="pub-journal-name">Applied Physics Letters, vol. 114, 202101, 2019</div>
+            <a href="https://arxiv.org/abs/1809.08009" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">3</span>
+          <div class="pub-content">
+            <div class="pub-title">Electrical Tuning of Helical Edge States in Topological Multilayers</div>
+            <div class="pub-authors"><strong>Campos, T.</strong>; Tolosa Sandoval, M. A.; Diago-Cisneros, L.; Sipahi, G. M.</div>
+            <div class="pub-journal-name">Journal of Physics-Condensed Matter, vol. 31, 495501, 2019</div>
+            <a href="https://arxiv.org/abs/1903.02687" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">4</span>
+          <div class="pub-content">
+            <div class="pub-title">Spin-orbit Coupling Effects in Zinc-Blende InSb and Wurtzite InAs Nanowires: Realistic Calculations with Multiband k&middot;p Method</div>
+            <div class="pub-authors"><strong>Campos, T.</strong>; Faria Junior, P. E.; Gmitra, M.; Sipahi, G. M.; Fabian, J.</div>
+            <div class="pub-journal-name">Physical Review B, vol. 97, 245402, 2018</div>
+            <a href="https://arxiv.org/abs/1802.06734" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">5</span>
+          <div class="pub-content">
+            <div class="pub-title">Stability and accuracy control of k&middot;p parameters</div>
+            <div class="pub-authors">Bastos, C. M. O.; Sabino, F.; Faria Junior, P. E.; <strong>Campos, T.</strong>; Silva, J. L. F.; Sipahi, G. M.</div>
+            <div class="pub-journal-name">Semiconductor Science and Technology, vol. 31, 105002, 2016</div>
+            <a href="https://arxiv.org/abs/1608.04982" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">6</span>
+          <div class="pub-content">
+            <div class="pub-title">Realistic multiband approach and spin-orbit coupling effects of InAs and InP in wurtzite phase</div>
+            <div class="pub-authors">Faria Junior, P. E.; <strong>Campos, T.</strong>; Bastos, C. M. O.; Gmitra, M.; Fabian, J.; Sipahi, G. M.</div>
+            <div class="pub-journal-name">Physical Review B, vol. 93, 235204, 2016</div>
+            <a href="https://arxiv.org/abs/1604.06014" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+        <li class="pub-entry fade-in">
+          <span class="pub-num">7</span>
+          <div class="pub-content">
+            <div class="pub-title">Interband polarized absorption in InP polytypic superlattices</div>
+            <div class="pub-authors">Faria Junior, P. E.; <strong>Campos, T.</strong>; Sipahi, G. M.</div>
+            <div class="pub-journal-name">Journal of Applied Physics, vol. 116, 193501, 2014</div>
+            <a href="https://arxiv.org/abs/1409.6836" target="_blank" class="pub-link">arXiv &rarr;</a>
+          </div>
+        </li>
+      </ol>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Projetos Selecionados</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-header">
-                        <h3 class="project-title">Sistema Multi-Agente de Análise Financeira</h3>
-                        <p class="project-subtitle">Itaú-Unibanco</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Desenvolvi um sistema multi-agente sofisticado usando LangChain e LangGraph para automatizar workflows complexos de análise financeira. O sistema coordena múltiplos agentes de IA especializados para coleta de dados, análise, avaliação de fit e geração de relatórios.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">LangChain</span>
-                            <span class="tech-tag">LangGraph</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">AWS Bedrock</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Estudo de Caso
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <div class="section-divider"></div>
 
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="project-header">
-                        <h3 class="project-title">Modelos de Machine Learning para Propensão</h3>
-                        <p class="project-subtitle">Itaú-Unibanco</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Desenvolvi e implementei múltiplos modelos tradicionais de machine learning para análise de propensão de clientes. Os modelos utilizam algoritmos como Random Forest, XGBoost e regressão logística para previsões precisas.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Random Forest</span>
-                            <span class="tech-tag">XGBoost</span>
-                            <span class="tech-tag">Regressão Logística</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-chart-line"></i> Métricas e Resultados
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="project-header">
-                        <h3 class="project-title">Sistema de Extração de Entidades com OCR e LLM</h3>
-                        <p class="project-subtitle">Itaú-Unibanco</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Desenvolvi um sistema automatizado que combina OCR (Optical Character Recognition) com LLMs para extrair entidades de documentos financeiros. O sistema processa imagens e PDFs, identificando informações críticas como nomes, valores, datas e outros dados relevantes.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">OCR</span>
-                            <span class="tech-tag">LLM</span>
-                            <span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">NLP</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Estudo de Caso
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-header">
-                        <h3 class="project-title">Método de Diferenças Finitas k·p de 8-Bandas</h3>
-                        <p class="project-subtitle">Pesquisa Acadêmica</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Desenvolvi uma ferramenta computacional de alto desempenho para simular poços quânticos de semicondutores usando o método k·p de 8-bandas. Este software baseado em Fortran handle cálculos complexos de estrutura eletrônica com precisão excepcional.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Fortran</span>
-                            <span class="tech-tag">Física Computacional</span>
-                            <span class="tech-tag">Álgebra Linear</span>
-                            <span class="tech-tag">HPC</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/tiagocampo/8bandkp-fdm" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <!-- Conferences -->
+    <section class="fade-in" id="section-06">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2 class="section-title">Confer&ecirc;ncias</h2>
+      </div>
+      <ul class="conf-list">
+        <li>1st Paulista-Bavarian Workshop on NTSD (2017)</li>
+        <li>1st Workshop on Topological Quantum Phenomena (2017)</li>
+        <li>2nd Paulista-Bavarian Workshop on NTSD (2017)</li>
+        <li>APS March Meeting (2017)</li>
+        <li>80th Annual DPG Conference (2016)</li>
+        <li>17th Brazilian Workshop on Semiconductor Physics (2015)</li>
+        <li>SPIE Optics + Photonics: Spintronics VII (2014)</li>
+        <li>XXVI IUPAP Conference on Computational Physics (2014)</li>
+        <li>16th Brazilian Workshop on Semiconductor Physics (2013)</li>
+      </ul>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Educação & Pesquisa</h2>
-            <div class="education-grid">
-                <div class="education-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="education-degree">Pesquisa Pós-Doutoral</h3>
-                    <p class="education-institution">State University of New York - Buffalo</p>
-                    <p class="education-period">2018 - 2019</p>
-                    <p class="education-details">
-                        Conduzi pesquisa avançada em física computacional e sistemas de semicondutores sob a supervisão do Prof. Igor Zutic, um especialista líder em spintrônica e física da matéria condensada.
-                    </p>
-                </div>
+    <div class="section-divider"></div>
 
-                <div class="education-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="education-degree">Pesquisa Pós-Doutoral</h3>
-                    <p class="education-institution">Universität Regensburg, Alemanha</p>
-                    <p class="education-period">2018</p>
-                    <p class="education-details">
-                        Colaboração de pesquisa com o grupo do Prof. Jaroslav Fabian, focando em efeitos de acoplamento spin-órbita em nanoestruturas de semicondutores e propriedades topológicas de sistemas quânticos.
-                    </p>
-                </div>
+    <!-- Certifications -->
+    <section class="fade-in">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2 class="section-title">Certifica&ccedil;&otilde;es</h2>
+      </div>
 
-                <div class="education-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="education-degree">Ph.D. em Física Computacional</h3>
-                    <p class="education-institution">Instituto de Física de São Carlos, USP</p>
-                    <p class="education-period">2013 - 2017</p>
-                    <p class="education-details">
-                        Pesquisa doutoral sobre efeitos de acoplamento spin-órbita em nanofios de semicondutores usando métodos realistas multibanda k·p. Incluiu Ph.D. sanduíche na Universität Regensburg, Alemanha.
-                    </p>
-                </div>
-
-                <div class="education-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="education-degree">M.Sc. em Física Computacional</h3>
-                    <p class="education-institution">Instituto de Física de São Carlos, USP</p>
-                    <p class="education-period">2011 - 2013</p>
-                    <p class="education-details">
-                        Pesquisa de mestrado focada em propriedades ópticas de nanofios InP usando cálculos k·p. Desenvolvi métodos computacionais para analisar propriedades eletrônicas e ópticas de nanoestruturas de semicondutores.
-                    </p>
-                </div>
-
-                <div class="education-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3 class="education-degree">B.Sc. em Física</h3>
-                    <p class="education-institution">Instituto de Física de São Carlos, USP</p>
-                    <p class="education-period">2006 - 2011</p>
-                    <p class="education-details">
-                        Bacharelado em Física com ênfase em métodos computacionais e física teórica. Graduado com honras e recebi financiamento CNPq durante todos os estudos de graduação.
-                    </p>
-                </div>
-            </div>
-        </div>
+      <div class="cert-grid">
+        <span class="cert-item">Introduction to LangGraph &mdash; LangChain Academy</span>
+        <span class="cert-item">AI Agents in LangGraph &mdash; DeepLearning.AI</span>
+        <span class="cert-item">How Transformer LLMs Work &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Attention in Transformers &mdash; DeepLearning.AI</span>
+        <span class="cert-item">LlamaIndex: Custom Data &mdash; Udemy</span>
+        <span class="cert-item">Feature Selection for ML &mdash; Udemy</span>
+        <span class="cert-item">Feature Engineering for ML &mdash; Udemy</span>
+        <span class="cert-item">Multi AI Agent Systems (crewAI) &mdash; DeepLearning.AI</span>
+        <span class="cert-item">AI Agentic Design (AutoGen) &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Semantic Search with LLMs &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Advanced RAG &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Unstructured Data for LLMs &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Prompt Compression &amp; Query Optimization &mdash; MongoDB</span>
+        <span class="cert-item">EDA App &mdash; Streamlit</span>
+        <span class="cert-item">ML with scikit-learn</span>
+        <span class="cert-item">Prompt Engineering &mdash; DeepLearning.AI</span>
+        <span class="cert-item">Linear Algebra &mdash; Coursera</span>
+      </div>
     </section>
 
-    <!-- Publications Section -->
-    <section id="publications" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Publicações Selecionadas</h2>
-            <div class="publications-list">
-                <div class="publication-item" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="publication-title">Superconducting Proximity Effect in InAsSb Surface Quantum Wells with In Situ Al Contacts</h3>
-                    <p class="publication-authors">Mayer, W.; Schiela, W. F.; Yuan, J.; Hatefipour, M.; <strong>Campos, T.</strong>; et al.</p>
-                    <p class="publication-journal">ACS Applied Electronic Materials, vol. 2, pp. 2351-2356, 2020</p>
-                    <a href="https://arxiv.org/abs/1909.12571" target="_blank" class="publication-link">
-                        <i class="fas fa-external-link-alt"></i> Ver no arXiv
-                    </a>
-                </div>
+  </main>
+</div>
 
-                <div class="publication-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="publication-title">Ultralong Spin Lifetimes in One-Dimensional Semiconductor Nanowires</h3>
-                    <p class="publication-authors">Dirnberger, F.; Kammermeier, M.; König, J.; <strong>Campos, T.</strong>; et al.</p>
-                    <p class="publication-journal">Applied Physics Letters, vol. 114, 202101, 2019</p>
-                    <a href="https://arxiv.org/abs/1809.08009" target="_blank" class="publication-link">
-                        <i class="fas fa-external-link-alt"></i> Ver no arXiv
-                    </a>
-                </div>
+<script>
+/* Scroll animations */
+function initAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-                <div class="publication-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="publication-title">Electrical Tuning of Helical Edge States in Topological Multilayers</h3>
-                    <p class="publication-authors"><strong>Campos, T.</strong>; Tolosa Sandoval, M. A.; Diago-Cisneros, L.; Sipahi, G. M.</p>
-                    <p class="publication-journal">Journal of Physics-Condensed Matter, vol. 31, 495501, 2019</p>
-                    <a href="https://arxiv.org/abs/1903.02687" target="_blank" class="publication-link">
-                        <i class="fas fa-external-link-alt"></i> Ver no arXiv
-                    </a>
-                </div>
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
 
-                <div class="publication-item" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="publication-title">Spin-orbit Coupling Effects in Zinc-Blende InSb and Wurtzite InAs Nanowires: Realistic Calculations with Multiband k·p Method</h3>
-                    <p class="publication-authors"><strong>Campos, T.</strong>; Faria Junior, P. E.; Gmitra, M.; Sipahi, G. M.; Fabian, J.</p>
-                    <p class="publication-journal">Physical Review B, vol. 97, 245402, 2018</p>
-                    <a href="https://arxiv.org/abs/1802.06734" target="_blank" class="publication-link">
-                        <i class="fas fa-external-link-alt"></i> Ver no arXiv
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+/* Stagger sidebar */
+function staggerSidebar() {
+  document.querySelectorAll('.sidebar .fade-in').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.08}s`;
+  });
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Entre em Contato</h2>
-            <div class="contact-info">
-                <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <p class="contact-text">Email</p>
-                    <a href="mailto:tiagocampo@gmail.com" class="contact-link">tiagocampo@gmail.com</a>
-                </div>
+/* PDF Generation removed — using window.print() instead */
 
-                <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <p class="contact-text">LinkedIn</p>
-                    <a href="https://www.linkedin.com/in/tiago-de-campos-a77827a5/" target="_blank" class="contact-link">Conecte-se comigo</a>
-                </div>
+document.addEventListener('DOMContentLoaded', function() {
+  staggerSidebar();
+  initAnimations();
+  initHighlightSync();
+});
 
-                <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <p class="contact-text">GitHub</p>
-                    <a href="https://github.com/tiagocampo" target="_blank" class="contact-link">Veja meus projetos</a>
-                </div>
+/* Scroll-sync sidebar highlights with main sections */
+function initHighlightSync() {
+  var sectionIds = ['section-03', 'section-04', 'section-05', 'section-06'];
+  var hlMap = {
+    'section-03': 'hl-03',
+    'section-04': 'hl-04',
+    'section-05': 'hl-05',
+    'section-06': 'hl-06'
+  };
 
-                <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="contact-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <p class="contact-text">Blog</p>
-                    <a href="https://tiagocampo.github.io/blog" target="_blank" class="contact-link">Leia meus artigos</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  function updateActiveHighlight() {
+    var scrollPos = window.scrollY + window.innerHeight * 0.35;
+    var activeHl = null;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Tiago de Campos. Todos os direitos reservados. | Desenvolvido com <i class="fas fa-heart text-danger"></i> e tecnologias web modernas</p>
-        </div>
-    </footer>
+    sectionIds.forEach(function(id) {
+      var section = document.getElementById(id);
+      if (section && scrollPos >= section.offsetTop) {
+        activeHl = hlMap[id];
+      }
+    });
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animate skill bars when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        setTimeout(() => {
-                            bar.style.width = width + '%';
-                        }, 200);
-                    });
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const skillsSection = document.querySelector('#skills');
-        if (skillsSection) {
-            skillObserver.observe(skillsSection);
+    document.querySelectorAll('.highlight-group').forEach(function(hl) {
+      var key = hl.getAttribute('data-highlight');
+      if (key === activeHl) {
+        hl.classList.add('active');
+      } else if (key === 'hl-default') {
+        if (!activeHl) {
+          hl.classList.add('active');
+          hl.classList.add('default-visible');
+        } else {
+          hl.classList.remove('active');
+          hl.classList.remove('default-visible');
         }
+      } else {
+        hl.classList.remove('active');
+      }
+    });
+  }
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
+  updateActiveHighlight();
 
-        // Add active state to navigation links based on scroll position
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateActiveHighlight();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+</script>
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add typing effect to hero title (optional)
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            const originalText = heroTitle.textContent;
-            heroTitle.textContent = '';
-            let index = 0;
-
-            function typeWriter() {
-                if (index < originalText.length) {
-                    heroTitle.textContent += originalText.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
-
-            setTimeout(typeWriter, 1000);
-        }
-    </script>
 </body>
 </html>
